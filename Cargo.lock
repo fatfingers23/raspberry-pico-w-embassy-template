@@ -181,6 +181,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "bt-hci"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "499d74e90e6b1e61660adc8fb5f17aeac9487bced16f57c1f91a8783736ada53"
+dependencies = [
+ "defmt",
+ "embassy-sync 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "embedded-io",
+ "embedded-io-async",
+ "futures-intrusive",
+ "heapless 0.8.0",
+]
+
+[[package]]
 name = "buffered-io"
 version = "0.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -341,17 +355,19 @@ dependencies = [
 
 [[package]]
 name = "cyw43"
-version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.2.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
+ "bt-hci",
  "cortex-m",
  "cortex-m-rt",
  "defmt",
- "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-net-driver-channel 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-net-driver-channel 0.3.0",
+ "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
  "embassy-time",
  "embedded-hal 1.0.0",
+ "embedded-io-async",
  "futures",
  "heapless 0.8.0",
  "num_enum",
@@ -359,8 +375,8 @@ dependencies = [
 
 [[package]]
 name = "cyw43-pio"
-version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.2.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "cyw43",
  "defmt",
@@ -554,12 +570,12 @@ dependencies = [
 
 [[package]]
 name = "embassy-embedded-hal"
-version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.2.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "defmt",
- "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
  "embassy-time",
  "embedded-hal 0.2.7",
  "embedded-hal 1.0.0",
@@ -571,8 +587,8 @@ dependencies = [
 
 [[package]]
 name = "embassy-executor"
-version = "0.5.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.6.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "cortex-m",
  "critical-section",
@@ -585,8 +601,8 @@ dependencies = [
 
 [[package]]
 name = "embassy-executor-macros"
-version = "0.4.1"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.5.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "darling",
  "proc-macro2",
@@ -597,7 +613,7 @@ dependencies = [
 [[package]]
 name = "embassy-futures"
 version = "0.1.1"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 
 [[package]]
 name = "embassy-futures"
@@ -606,8 +622,8 @@ source = "git+https://github.com/embassy-rs/embassy.git#2b031756c6d705f58de972de
 
 [[package]]
 name = "embassy-hal-internal"
-version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.2.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "cortex-m",
  "critical-section",
@@ -618,12 +634,12 @@ dependencies = [
 [[package]]
 name = "embassy-net"
 version = "0.4.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "defmt",
  "document-features",
- "embassy-net-driver 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-net-driver 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
  "embassy-time",
  "embedded-io-async",
  "embedded-nal-async",
@@ -635,7 +651,7 @@ dependencies = [
 [[package]]
 name = "embassy-net-driver"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "defmt",
 ]
@@ -644,16 +660,6 @@ dependencies = [
 name = "embassy-net-driver"
 version = "0.2.0"
 source = "git+https://github.com/embassy-rs/embassy.git#2b031756c6d705f58de972de48f7300b4fdc673c"
-
-[[package]]
-name = "embassy-net-driver-channel"
-version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
-dependencies = [
- "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-net-driver 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
-]
 
 [[package]]
 name = "embassy-net-driver-channel"
@@ -666,13 +672,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "embassy-net-driver-channel"
+version = "0.3.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
+dependencies = [
+ "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-net-driver 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+]
+
+[[package]]
 name = "embassy-net-wiznet"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "defmt",
- "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-net-driver-channel 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-net-driver-channel 0.3.0",
  "embassy-time",
  "embedded-hal 1.0.0",
  "embedded-hal-async",
@@ -680,8 +696,8 @@ dependencies = [
 
 [[package]]
 name = "embassy-rp"
-version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.2.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "atomic-polyfill",
  "cfg-if",
@@ -691,12 +707,12 @@ dependencies = [
  "defmt",
  "document-features",
  "embassy-embedded-hal",
- "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
  "embassy-hal-internal",
- "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
  "embassy-time",
  "embassy-time-driver",
- "embassy-usb-driver 0.1.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-usb-driver 0.1.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
  "embedded-hal 0.2.7",
  "embedded-hal 1.0.0",
  "embedded-hal-async",
@@ -712,12 +728,26 @@ dependencies = [
  "rand_core",
  "rp-pac",
  "rp2040-boot2",
+ "sha2-const-stable",
 ]
 
 [[package]]
 name = "embassy-sync"
 version = "0.6.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b3e0c49ff02ebe324faf3a8653ba91582e2d0a7fdef5bc88f449d5aa1bfcc05c"
+dependencies = [
+ "cfg-if",
+ "critical-section",
+ "embedded-io-async",
+ "futures-util",
+ "heapless 0.8.0",
+]
+
+[[package]]
+name = "embassy-sync"
+version = "0.6.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "cfg-if",
  "critical-section",
@@ -741,8 +771,8 @@ dependencies = [
 
 [[package]]
 name = "embassy-time"
-version = "0.3.1"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+version = "0.3.2"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "cfg-if",
  "critical-section",
@@ -760,7 +790,7 @@ dependencies = [
 [[package]]
 name = "embassy-time-driver"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "document-features",
 ]
@@ -768,22 +798,7 @@ dependencies = [
 [[package]]
 name = "embassy-time-queue-driver"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
-
-[[package]]
-name = "embassy-usb"
-version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
-dependencies = [
- "defmt",
- "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-net-driver-channel 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "embassy-usb-driver 0.1.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
- "heapless 0.8.0",
- "ssmarshal",
- "usbd-hid",
-]
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 
 [[package]]
 name = "embassy-usb"
@@ -791,7 +806,7 @@ version = "0.2.0"
 source = "git+https://github.com/embassy-rs/embassy.git#2b031756c6d705f58de972de48f7300b4fdc673c"
 dependencies = [
  "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git)",
- "embassy-net-driver-channel 0.2.0 (git+https://github.com/embassy-rs/embassy.git)",
+ "embassy-net-driver-channel 0.2.0",
  "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git)",
  "embassy-usb-driver 0.1.0 (git+https://github.com/embassy-rs/embassy.git)",
  "heapless 0.8.0",
@@ -800,9 +815,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "embassy-usb"
+version = "0.3.0"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
+dependencies = [
+ "defmt",
+ "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-net-driver-channel 0.3.0",
+ "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "embassy-usb-driver 0.1.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
+ "heapless 0.8.0",
+ "ssmarshal",
+ "usbd-hid",
+]
+
+[[package]]
 name = "embassy-usb-driver"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c#2b031756c6d705f58de972de48f7300b4fdc673c"
+source = "git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6#f0a86070512ad739641cee7d9fa39d63f5c8a9f6"
 dependencies = [
  "defmt",
 ]
@@ -819,7 +849,7 @@ source = "git+https://github.com/embassy-rs/embassy.git#2b031756c6d705f58de972de
 dependencies = [
  "embassy-futures 0.1.1 (git+https://github.com/embassy-rs/embassy.git)",
  "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git)",
- "embassy-usb 0.2.0 (git+https://github.com/embassy-rs/embassy.git)",
+ "embassy-usb 0.2.0",
  "log",
 ]
 
@@ -844,9 +874,9 @@ dependencies = [
  "embassy-net",
  "embassy-net-wiznet",
  "embassy-rp",
- "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-sync 0.6.0 (git+https://github.com/embassy-rs/embassy.git?rev=f0a86070512ad739641cee7d9fa39d63f5c8a9f6)",
  "embassy-time",
- "embassy-usb 0.2.0 (git+https://github.com/embassy-rs/embassy.git?rev=2b031756c6d705f58de972de48f7300b4fdc673c)",
+ "embassy-usb 0.3.0",
  "embassy-usb-logger",
  "embedded-graphics",
  "embedded-hal 1.0.0",
@@ -1160,6 +1190,16 @@ name = "futures-core"
 version = "0.3.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dfc6580bb841c5a68e9ef15c77ccc837b40a7504914d52e47b8b0e9bbda25a1d"
+
+[[package]]
+name = "futures-intrusive"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1d930c203dd0b6ff06e0201a4a2fe9149b43c684fd4420555b26d21b1a02956f"
+dependencies = [
+ "futures-core",
+ "lock_api",
+]
 
 [[package]]
 name = "futures-io"
@@ -1919,8 +1959,7 @@ dependencies = [
 [[package]]
 name = "rp-pac"
 version = "6.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f30f6c4c846269293db805e9c77864ff7b923395b480550df44f0868e3765337"
+source = "git+https://github.com/embassy-rs/rp-pac.git?rev=a7f42d25517f7124ad3b4ed492dec8b0f50a0e6c#a7f42d25517f7124ad3b4ed492dec8b0f50a0e6c"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -2046,6 +2085,12 @@ dependencies = [
  "cpufeatures",
  "digest",
 ]
+
+[[package]]
+name = "sha2-const-stable"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f179d4e11094a893b82fff208f74d448a7512f99f5a0acbd5c679b705f83ed9"
 
 [[package]]
 name = "siphasher"
