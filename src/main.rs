@@ -5,17 +5,17 @@
 #![no_std]
 #![no_main]
 
-use control_driver::setup_control;
+use cyw43_driver::setup_cyw43;
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_time::{Duration, Timer};
 use {defmt_rtt as _, panic_probe as _};
 
-mod control_driver;
+mod cyw43_driver;
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
-    let mut control = setup_control(
+    let (_device, mut control) = setup_cyw43(
         p.PIO0, p.PIN_23, p.PIN_24, p.PIN_25, p.PIN_29, p.DMA_CH0, spawner,
     )
     .await;

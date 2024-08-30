@@ -2,6 +2,7 @@ use cyw43::Control;
 use cyw43_pio::PioSpi;
 use defmt::unwrap;
 use embassy_executor::Spawner;
+use embassy_net_wiznet::Device;
 use embassy_rp::bind_interrupts;
 use embassy_rp::gpio::{Level, Output};
 use embassy_rp::peripherals::{DMA_CH0, PIO0};
@@ -20,7 +21,7 @@ async fn cyw43_task(
     runner.run().await
 }
 
-pub async fn setup_control<'a>(
+pub async fn setup_cyw43<'a>(
     pio0: PIO0,
     p_23: PIN_23,
     p_24: PIN_24,
@@ -28,7 +29,7 @@ pub async fn setup_control<'a>(
     p_29: PIN_29,
     dma_ch0: DMA_CH0,
     spawner: Spawner,
-) -> Control<'a> {
+) -> (Device<'a>, Control<'a>) {
     let fw = include_bytes!("../cyw43-firmware/43439A0.bin");
     let clm = include_bytes!("../cyw43-firmware/43439A0_clm.bin");
     let btfw = include_bytes!("../cyw43-firmware/43439A0_btfw.bin");
@@ -49,7 +50,7 @@ pub async fn setup_control<'a>(
 
     static STATE: StaticCell<cyw43::State> = StaticCell::new();
     let state = STATE.init(cyw43::State::new());
-    let (_net_device, _bt_device, mut control, runner) =
+    let (net_device, _bt_device, mut control, runner) =
         cyw43::new_with_bluetooth(state, pwr, spi, fw, btfw).await;
     unwrap!(spawner.spawn(cyw43_task(runner)));
 
@@ -57,5 +58,5 @@ pub async fn setup_control<'a>(
     control
         .set_power_management(cyw43::PowerManagementMode::PowerSave)
         .await;
-    control
+    (net_device, control)
 }
