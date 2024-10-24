@@ -20,7 +20,7 @@ async fn main(spawner: Spawner) {
     )
     .await;
 
-    let delay = Duration::from_secs(1);
+    let delay: Duration = Duration::from_secs(1);
 
     loop {
         info!("led on!");
