@@ -97,8 +97,7 @@ pio-proc = "0.2"
 pio = "0.2.1"
 rand = { version = "0.8.5", default-features = false }
 embedded-sdmmc = "0.7.0"
-bt-hci = { version = "0.1.0", default-features = false, features = ["defmt"] }
-trouble-host = { version = "0.1.0", features = ["defmt", "gatt"] }
+
 
 [profile.release]
 debug = 2
@@ -108,5 +107,4 @@ lto = true
 opt-level = "z"
 
 [patch.crates-io]
-trouble-host = { git = "https://github.com/embassy-rs/trouble.git", rev = "4b8c0f499b34e46ca23a56e2d1640ede371722cf" }
 embassy-time = { git = "https://github.com/embassy-rs/embassy.git", rev = "8803128707b8bd9fc9dcea392a62dfd42aa822d2" }

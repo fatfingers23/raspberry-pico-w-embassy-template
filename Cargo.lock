@@ -188,7 +188,6 @@ checksum = "499d74e90e6b1e61660adc8fb5f17aeac9487bced16f57c1f91a8783736ada53"
 dependencies = [
  "defmt",
  "embassy-sync 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "embassy-time",
  "embedded-io",
  "embedded-io-async",
  "futures-intrusive",
@@ -614,12 +613,6 @@ dependencies = [
 [[package]]
 name = "embassy-futures"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1f878075b9794c1e4ac788c95b728f26aa6366d32eeb10c7051389f898f7d067"
-
-[[package]]
-name = "embassy-futures"
-version = "0.1.1"
 source = "git+https://github.com/embassy-rs/embassy.git?rev=8803128707b8bd9fc9dcea392a62dfd42aa822d2#8803128707b8bd9fc9dcea392a62dfd42aa822d2"
 
 [[package]]
@@ -867,7 +860,6 @@ name = "embassy_rp_w_template"
 version = "0.1.0"
 dependencies = [
  "assign-resources",
- "bt-hci",
  "byte-slice-cast 1.2.2",
  "cortex-m",
  "cortex-m-rt",
@@ -910,7 +902,6 @@ dependencies = [
  "smart-leds 0.3.0",
  "st7789",
  "static_cell",
- "trouble-host",
  "usbd-hid",
 ]
 
@@ -2334,21 +2325,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2c9d3793400a45f954c52e73d068316d76b6f4e36977e3fcebb13a2721e80237"
 dependencies = [
  "crunchy",
-]
-
-[[package]]
-name = "trouble-host"
-version = "0.1.0"
-source = "git+https://github.com/embassy-rs/trouble.git?rev=4b8c0f499b34e46ca23a56e2d1640ede371722cf#4b8c0f499b34e46ca23a56e2d1640ede371722cf"
-dependencies = [
- "bt-hci",
- "defmt",
- "embassy-futures 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "embassy-sync 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "embassy-time",
- "embedded-io-async",
- "futures",
- "heapless 0.8.0",
 ]
 
 [[package]]
