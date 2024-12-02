@@ -1,6 +1,6 @@
 ## Raspberry Pico W Embassy Template
 
-This is just a simple template for setting up a project using [embassy_rp](https://github.com/embassy-rs/embassy/tree/f0a86070512ad739641cee7d9fa39d63f5c8a9f6/embassy-rp). This currently pulls all dependencies from the embassy repo because I found some of the examples not working with the latest versions of the dependencies on crates.io. Currently pulling commit `f0a86070512ad739641cee7d9fa39d63f5c8a9f6` of the embassy repo. Also will notice the `cargo.toml` has everything including the kitchen sink. Trim what you don't need, this is mostly for beginners(me) to get started with.
+This is just a simple template for setting up a project using [embassy_rp](https://github.com/embassy-rs/embassy/tree/8803128707b8bd9fc9dcea392a62dfd42aa822d2/embassy-rp). This currently pulls all dependencies from the embassy repo because I found some of the examples not working with the latest versions of the dependencies on crates.io. Currently pulling commit `8803128707b8bd9fc9dcea392a62dfd42aa822d2` of the embassy repo. Also will notice the `cargo.toml` has everything including the kitchen sink. Trim what you don't need, this is mostly for beginners(me) to get started with.
 
 Will notice this is the Wifi Blinky example. I did this so I can include the cyw43 firmware and an example of how to load it onto the pico.
 

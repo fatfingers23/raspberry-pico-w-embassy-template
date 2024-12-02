@@ -32,12 +32,13 @@ pub async fn setup_cyw43<'a>(
 ) -> (Device<'a>, Control<'a>) {
     let fw = include_bytes!("../cyw43-firmware/43439A0.bin");
     let clm = include_bytes!("../cyw43-firmware/43439A0_clm.bin");
-    let btfw = include_bytes!("../cyw43-firmware/43439A0_btfw.bin");
+    //Un-comment below line for bluetooth
+    // let btfw = include_bytes!("../cyw43-firmware/43439A0_btfw.bin");
 
     // To make flashing faster for development, you may want to flash the firmwares independently
     // at hardcoded addresses, instead of baking them into the program with `include_bytes!`:
-    //     probe-rs download 43439A0.bin --format bin --chip RP2040 --base-address 0x10100000
-    //     probe-rs download 43439A0_clm.bin --format bin --chip RP2040 --base-address 0x10140000
+    //     probe-rs download 43439A0.bin --binary-format bin --chip RP2040 --base-address 0x101b0000
+    //     probe-rs download 43439A0_clm.bin --binary-format bin --chip RP2040 --base-address 0x101f8000
     //     probe-rs download 43439A0_btfw.bin --format bin --chip RP2040 --base-address 0x10141400
     //let fw = unsafe { core::slice::from_raw_parts(0x10100000 as *const u8, 224190) };
     //let clm = unsafe { core::slice::from_raw_parts(0x10140000 as *const u8, 4752) };
@@ -50,8 +51,10 @@ pub async fn setup_cyw43<'a>(
 
     static STATE: StaticCell<cyw43::State> = StaticCell::new();
     let state = STATE.init(cyw43::State::new());
-    let (net_device, _bt_device, mut control, runner) =
-        cyw43::new_with_bluetooth(state, pwr, spi, fw, btfw).await;
+    let (net_device, mut control, runner) = cyw43::new(state, pwr, spi, fw).await;
+    //Un comment the below new_with_bluetooth line for bluetooth
+    // let (net_device, _bt_device, mut control, runner) =
+    //     cyw43::new_with_bluetooth(state, pwr, spi, fw, btfw).await;
     unwrap!(spawner.spawn(cyw43_task(runner)));
 
     control.init(clm).await;
