@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App on the Pico </title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+    <div v-scope
+         @vue:mounted="setLightStatusFromServer">
+        <div class="hero bg-base-200 min-h-screen">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-3xl font-bold">Your Pico W led is {{lightStatus}} {{lightEmoji}}</h1>
+                    <p class="py-6">
+                       This website was made with <a class="link" href="https://github.com/vuejs/petite-vue">petite-vue</a> and <a class="link" href="https://daisyui.com/">DaisyUI</a>. All of this running on a <a class="link" href="https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico W</a>
+                    </p>
+                    <button @click="toggle()" class="btn btn-primary">Turn the light {{lightOppositeStatus}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/petite-vue?module'
+        createApp({
+            lightIsOn: true,
+            get lightStatus(){
+              return this.lightIsOn ? 'On' : 'Off'
+            },
+            get lightOppositeStatus(){
+              return this.lightIsOn ? 'Off' : 'On'
+            },
+            get lightEmoji(){
+              return this.lightIsOn ? '☀️' : '🌓' ;
+            },
+            toggle() {
+                const url = `/${this.lightOppositeStatus.toLowerCase()}`;
+                this.lightIsOn = !this.lightIsOn
+                fetch(url).then(response => {
+                    if (response.status !== 200) {
+                        console.error('Request failed with status:', response.status);
+                    }
+                });
+            },
+            setLightStatusFromServer() {
+                fetch('/light_status').then(response => {
+                    if (response.status === 200) {
+                        response.json().then(data => {
+                            this.lightIsOn = data.light_status;
+                        });
+                    } else {
+                        console.error('Request failed with status:', response.status);
+                    }
+                });
+            }
+        }).mount()
+
+    </script>
+</body>
+
+</html>
