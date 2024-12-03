@@ -7,7 +7,7 @@ use cyw43::{Control, JoinOptions};
 use cyw43_driver::{net_task, setup_cyw43};
 use defmt::*;
 use embassy_executor::Spawner;
-use embassy_net::{Config, StackResources};
+use embassy_net::{Config, Stack, StackResources};
 use embassy_rp::clocks::RoscRng;
 use embassy_time::Timer;
 use env::env_value;
@@ -84,9 +84,14 @@ async fn main(spawner: Spawner) {
     info!("Stack is up! You are good to use the network!");
 
     control.gpio_set(0, true).await;
-    let mut server = HttpServer::new(80, stack);
 
-    server.serve(WebsiteHandler { control }).await;
+    spawner.must_spawn(http_server_task(stack, WebsiteHandler { control }));
+}
+
+#[embassy_executor::task]
+async fn http_server_task(stack: Stack<'static>, website_handler: WebsiteHandler) {
+    let mut server = HttpServer::new(80, stack);
+    server.serve(website_handler).await;
 }
 
 struct WebsiteHandler {
@@ -105,7 +110,16 @@ impl WebRequestHandler for WebsiteHandler {
                 let web_app = include_str!("../web_app/index.html");
                 return Ok(Response::new_html(StatusCode::Ok, web_app));
             }
-
+            "/post_test" => {
+                if request.method.unwrap().as_str() == http_server::Method::Post.as_str() {
+                    info!("Received body: {:?}", request.body);
+                    return Ok(Response::new_html(StatusCode::Ok, "Received body"));
+                }
+                return Ok(Response::new_html(
+                    StatusCode::MethodNotAllowed,
+                    "Only POST method is allowed",
+                ));
+            }
             "/light_status" => {
                 let light_status = LightStatus {
                     light_status: LIGHT_STATUS.load(core::sync::atomic::Ordering::Relaxed),

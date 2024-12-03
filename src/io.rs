@@ -20,7 +20,6 @@ pub fn easy_format_str<'a>(
     args: Arguments<'_>,
     buffer: &'a mut [u8],
 ) -> Result<&'a str, core::fmt::Error> {
-    // let mut response_buffer = [0u8; 4096]; // Size the buffer appropriately
     let mut writer = BufWriter::new(buffer);
     let result = core::fmt::write(&mut writer, args);
 
